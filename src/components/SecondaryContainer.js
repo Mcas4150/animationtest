@@ -24,28 +24,87 @@ export default class SecondaryContainer extends Component {
     return (
       <div
         className="secondary-container"
-        style={started? styles.end : styles.start}
-      />
+        style={started ? styles.end : styles.start}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center"
+          }}
+        >
+          {started ? (
+            <div
+              className="secondary--title"
+              style={{
+                height: "100vh",
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "center",
+                fontSize: "24px",
+                color: "white"
+              }}
+            >
+              Marketing Strategies
+            </div>
+          ) : (
+            <div
+              className="secondary--components"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "center"
+              }}
+            >
+              <div
+                className="secondary--component"
+                style={{ alignItems: "center" }}
+              >
+                <h2>Component 1</h2>
+                <div> dumb image</div>
+              </div>
+              <div
+                className="secondary--component"
+                style={{ alignItems: "center" }}
+              >
+                <h2>Component 2</h2>
+                <div> dumb image</div>
+              </div>
+              <div
+                className="secondary--component"
+                style={{ alignItems: "center" }}
+              >
+                <h2>Component 3</h2>
+                <div> dumb image</div>
+              </div>
+              <div
+                className="secondary--component"
+                style={{ alignItems: "center" }}
+              >
+                <h2>Component 4</h2>
+                <div> dumb image</div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     );
   }
 }
-
-
-
 
 const styles = {
   start: {
     position: "fixed",
     bottom: 0,
     left: 0,
-    // gridArea: "secondary",
+
     height: "37.5vh",
     width: "100vw",
     backgroundColor: "lightgrey",
     transition: "all 1s ease-out, backgroundColor 3.5s ease-in"
   },
   end: {
-    // gridArea: "secondary",
+
     position: "fixed",
     bottom: 0,
     left: 0,
