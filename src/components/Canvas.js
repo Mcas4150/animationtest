@@ -23,106 +23,99 @@ export default class Canvas extends Component {
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
-
   updateCanvas() {
     let ctx = this.refs.canvas.getContext("2d");
-    // ctx.beginPath();
-    // ctx.moveTo(400, 500);
-    // ctx.arc(95, 50, 40, 0, 2 * Math.PI);
-    // ctx.stroke();
+    var time = new Date();
 
-        const ball = {
-          x: 100,
-          y: 100,
-          radius: 25,
-          color: "blue",
-          draw: function() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-            ctx.closePath();
-            // ctx.rotate(
-            //   ((2 * Math.PI) / 60) * time.getSeconds() +
-            //     ((2 * Math.PI) / 60000) * time.getMilliseconds()
-            // );
-            ctx.fillStyle = this.color;
-            ctx.fill();
-          },
-          rotate: function() {}
-        };
-        ctx.globalCompositeOperation = "multiple";
-        ctx.clearRect(0, 0, 2000, 2000); // clear canvas
 
-        ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
-        ctx.strokeStyle = "rgba(0, 153, 255, 0.4)";
-        ctx.save();
-        ctx.moveTo(0, this.state.height / 2 )
-        ctx.translate(150, 150);
 
-        // Earth
-        var time = new Date();
-        ctx.rotate(
-          ((2 * Math.PI) / 60) * time.getSeconds() +
-            ((2 * Math.PI) / 60000) * time.getMilliseconds()
-        );
-        ctx.translate(105, 0);
-        ctx.fillRect(0, -12, 40, 24); // Shadow
-        ctx.drawImage(earth, -12, -12);
+    // const earth = {
+    //   x: 500,
+    //   y: 300,
+    //   radius: 25,
+    //   color: "blue",
+    //   draw: function() {
+    //     ctx.beginPath();
+    //     ctx.rotate(
+    //       ((2 * Math.PI) / 60) * time.getSeconds() +
+    //         ((2 * Math.PI) / 60000) * time.getMilliseconds()
+    //     );
+    //     ctx.translate(105, 0);
+    //     ctx.fillRect(0, -12, 40, 24); // Shadow
 
-        ctx.translate(10, 10);
-        // earth 2
-        ctx.rotate(
-          ((2 * Math.PI) / 60) * time.getSeconds() +
-            ((2 * Math.PI) / 60000) * time.getMilliseconds()
-        );
-        ctx.translate(105, 0);
-        ctx.fillRect(0, -12, 40, 24); // Shadow
-        ctx.drawImage(earth, -12, -12);
+    //     ctx.translate(10, 10);
+    //     ctx.closePath();
+    //     // ctx.rotate(
+    //     //   ((2 * Math.PI) / 60) * time.getSeconds() +
+    //     //     ((2 * Math.PI) / 60000) * time.getMilliseconds()
+    //     // );
+    //     ctx.fillStyle = this.color;
+    //     ctx.fill();
+    //   },
+    //   rotate: function() {}
+    // };
 
-        // Moon
-        ctx.save();
-        ctx.rotate(
-          ((2 * Math.PI) / 6) * time.getSeconds() +
-            ((2 * Math.PI) / 6000) * time.getMilliseconds()
-        );
-        ctx.translate(0, 28.5);
-        // ctx.drawImage(moon, -3.5, -3.5);
+    ctx.globalCompositeOperation = "multiple";
+    ctx.clearRect(0, 0, 2000, 2000); // clear canvas
+
+    ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+    // ctx.strokeStyle = "rgba(0, 153, 255, 0.4)";
+    ctx.strokeStyle = "darkgrey";
+    ctx.save();
+    ctx.moveTo(0, this.state.height / 2);
+    ctx.translate(550, 460);
+
+    // orbit 1
+    ctx.rotate(
+      ((2 * Math.PI) / 60) * time.getSeconds() +
+        ((2 * Math.PI) / 60000) * time.getMilliseconds()
+    );
+
+    ctx.translate(50, 0);
+    ctx.beginPath();
+    ctx.arc(20, 20, 15, 0, Math.PI * 2, true);
+    ctx.stroke();
+
+    ctx.translate(60, 0);
+    ctx.beginPath();
+    ctx.arc(75, 75, 15, 0, Math.PI * 2, true);
+    ctx.stroke();
+
+    ctx.translate(65, 0);
+    ctx.beginPath();
+    ctx.arc(65, 65, 15, 0, Math.PI * 2, true);
+    ctx.fillStyle = "blue";
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.translate(0, 28.5);
+
     ctx.moveTo(800, 300);
-        ctx.lineTo(200, 100);
-        ctx.fillStyle = "blue";
-        ctx.restore();
+    ctx.lineTo(200, 100);
+    ctx.fillStyle = "blue";
+    ctx.restore();
 
-        ctx.restore();
-        window.setTimeout(ball.draw(), 3000);
-        // ball.draw();
-        // ball.rotate();
+    ctx.restore();
+    // window.setTimeout(ball.draw(), 3000);
 
-        ctx.beginPath();
-        ctx.arc(150, 150, 105, 0, Math.PI * 2, false); // Earth orbit
-        ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(550, 460, 135, 0, Math.PI * 2, false); // Earth orbit
+    ctx.stroke();
 
-        ctx.beginPath();
-        ctx.arc(150, 150, 155, 0, Math.PI * 2, false); // Earth orbit
-        ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(550, 460, 75, 0, Math.PI * 2, false); // Earth orbit
+    ctx.stroke();
 
-        ctx.beginPath();
-        ctx.arc(150, 150, 200, 0, Math.PI * 2, false); // Earth orbit
-        ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(550, 460, 200, Math.PI * 2, false); // Earth orbit
+    ctx.stroke();
 
-        ctx.drawImage(sun, 0, 0, 1000, 1000);
+    ctx.beginPath();
+    ctx.arc(550, 460, 255, 0, Math.PI * 2, false); // Earth orbit
+    ctx.stroke();
 
     const globalId = window.requestAnimationFrame(this.updateCanvas);
     this.setState({ globalId: globalId });
-
-    // ctx.fillRect(0, 0, 100, 1000);
-    // ctx.moveTo(0, 0);
-    // ctx.lineTo(height / 2, 0);
-    // ctx.lineTo(height / 10, height / 10);
-    // ctx.lineTo(height / 10, height - height / 10);
-    // ctx.lineTo(height / 2, height);
-    // ctx.lineTo(0, height);
-    // ctx.lineTo(0, 0);
-    // ctx.fillStyle = "black";
-    // ctx.fill();
   }
 
   updateWindowDimensions() {
@@ -141,7 +134,3 @@ export default class Canvas extends Component {
     );
   }
 }
-
-const sun = new Image();
-const moon = new Image();
-const earth = new Image();
