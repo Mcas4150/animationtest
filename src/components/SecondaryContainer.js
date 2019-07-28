@@ -40,9 +40,11 @@ export default class SecondaryContainer extends Component {
               style={{
                 height: "100vh",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
                 alignContent: "center",
-                fontSize: "24px",
+                textAlign: "center",
+                fontSize: "3rem",
                 color: "white"
               }}
             >
@@ -54,45 +56,98 @@ export default class SecondaryContainer extends Component {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                alignContent: "center"
+                alignContent: "center",
+                marginTop: "-70px"
               }}
             >
-           <div
+              <div
                 className="secondary--component"
-                style={{ display: "flex", flexDirection: "column", alignItems: "center", justiftyContent: "center", margin: "25px" }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justiftyContent: "center",
+                  margin: "25px",
+                  zIndex:"5"
+                }}
               >
-                <div style={{ color: "turquoise", fontSize: "1.5rem", marginBottom: "25px" }}>
+                <div
+                  style={{
+                    color: "turquoise",
+                    fontSize: "1.5rem",
+                    marginBottom: "25px"
+                  }}
+                >
                   Component 1
                 </div>
-                <img src={logo} alt={"logo"} style={{width: "150px"}}/>
+                <img src={logo} alt={"logo"} style={{ width: "150px" }} />
               </div>
               <div
                 className="secondary--component"
-                style={{ display: "flex", flexDirection: "column", alignItems: "center", justiftyContent: "center", margin: "25px" }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justiftyContent: "center",
+                  margin: "25px",
+                  zIndex:"5"
+                }}
               >
-                <div style={{ color: "turquoise", fontSize: "1.5rem", marginBottom: "25px" }}>
+                <div
+                  style={{
+                    color: "turquoise",
+                    fontSize: "1.5rem",
+                    marginBottom: "25px"
+                  }}
+                >
                   Component 2
                 </div>
-                <img src={logo} alt={"logo"} style={{width: "150px"}}/>
+                <img src={logo} alt={"logo"} style={{ width: "150px" }} />
               </div>
               <div
                 className="secondary--component"
-                style={{ display: "flex", flexDirection: "column", alignItems: "center", justiftyContent: "center", margin: "25px" }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justiftyContent: "center",
+                  margin: "25px",
+                  zIndex: "5"
+                }}
               >
-                <div style={{ color: "turquoise", fontSize: "1.5rem", marginBottom: "25px"}}>
+                <div
+                  style={{
+                    color: "turquoise",
+                    fontSize: "1.5rem",
+                    marginBottom: "25px"
+                  }}
+                >
                   Component 3
                 </div>
-                <img src={logo} alt={"logo"} style={{width: "150px"}}/>
+                <img src={logo} alt={"logo"} style={{ width: "150px" }} />
               </div>
 
               <div
                 className="secondary--component"
-                style={{ display: "flex", flexDirection: "column", alignItems: "center", justiftyContent: "center", margin: "25px" }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justiftyContent: "center",
+                  margin: "25px",
+                  zIndex: "5"
+                }}
               >
-                <div style={{ color: "turquoise", fontSize: "1.5rem", marginBottom: "25px" }}>
+                <div
+                  style={{
+                    color: "turquoise",
+                    fontSize: "1.5rem",
+                    marginBottom: "25px"
+                  }}
+                >
                   Component 4
                 </div>
-                <img src={logo} alt={"logo"} style={{width: "150px"}}/>
+                <img src={logo} alt={"logo"} style={{ width: "150px" }} />
               </div>
             </div>
           )}
@@ -107,7 +162,7 @@ const styles = {
     position: "fixed",
     bottom: 0,
     left: 0,
-
+    // zIndex: 2,
     height: "37.5vh",
     width: "100vw",
     backgroundColor: "lightgrey",
@@ -117,12 +172,10 @@ const styles = {
     position: "fixed",
     bottom: 0,
     left: 0,
+
     height: "100vh",
     width: "33vw",
     backgroundColor: "grey",
     transition: "all 1s ease-in-out, backgroundColor 1.5s ease-out"
   }
 };
-
-
-

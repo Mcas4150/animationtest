@@ -55,18 +55,20 @@ export default class PrimaryContainer extends Component {
                 flexDirection: "column",
                 alignItems: "center",
                 border: "solid 3px white",
-                height: "40vh",
-                width: "80vw",
+                height: "45vh",
+                width: "75vw",
                 margin: "35px",
+                marginTop: "75px",
                 padding: "50px"
               }}
             >
               <div
                 style={{
                   color: "white",
-                  fontSize: "3rem",
+                  fontSize: "2.5rem",
                   fontWeight: "600",
-                  textAlign: "center"
+                  textAlign: "center",
+                  paddingTop: "40px"
                 }}
               >
                 Strategic Partnerships
@@ -77,8 +79,9 @@ export default class PrimaryContainer extends Component {
                   fontSize: "1.5rem",
                   fontWeight: "300",
                   textAlign: "center",
-                  maxWidth: "500px",
-                  marginTop: "35px"
+                  maxWidth: "600px",
+                  marginTop: "40px",
+                  letterSpacing: "2px"
                 }}
               >
                 Our partnership with these highly regarded companies can lead us
@@ -97,7 +100,7 @@ const styles = {
     top: 0,
     position: "fixed",
     right: 0,
-    zIndex: 3,
+    // zIndex: 3,
     height: "62.5vh",
     width: "100vw",
     backgroundColor: "grey",
@@ -107,7 +110,7 @@ const styles = {
     position: "fixed",
     top: 0,
     right: 0,
-    zIndex: 3,
+    // zIndex: 3,
     height: "100vh",
     width: "67vw",
     backgroundColor: "white",
