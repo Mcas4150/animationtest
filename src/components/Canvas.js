@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class Canvas extends Component {
   constructor(props) {
     super(props);
-    this.state = { width: 0, height: 0, globalId: "" };
+    this.state = { width: 0, height: 0, globalId: "", counter: 0 };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.updateCanvas = this.updateCanvas.bind(this);
   }
@@ -27,6 +27,9 @@ export default class Canvas extends Component {
     let ctx = this.refs.canvas.getContext("2d");
     var time = new Date();
     let angle = 0;
+
+    let sineCounter = Math.abs(Math.sin(this.state.counter/100));
+    let cosineCounter = Math.abs(Math.cos(this.state.counter/100));
 
     const orbit = {
       draw: function(radius) {
@@ -74,27 +77,29 @@ export default class Canvas extends Component {
         5
     );
 
-    ctx.translate(50, 0);
-    circle.draw(8, "deepskyblue");
+    ctx.translate(50 * sineCounter , 0);
+    circle.draw(8 * sineCounter, "deepskyblue");
 
-    ctx.translate(60, -60);
-    circle.draw(15 * Math.abs(Math.cos(angle)), "white");
+    ctx.translate(60 * sineCounter, -60 * sineCounter);
+    circle.draw(15 * sineCounter, "white");
 
-    ctx.translate(30, -85);
-    circle.draw(15 * Math.abs(Math.cos(angle)), "deepskyblue");
+    ctx.translate(30 * sineCounter, -85 * sineCounter);
+    circle.draw(15 * sineCounter, "deepskyblue");
 
     ctx.restore();
-    window.setTimeout(orbit.draw(135), 1500);
-    window.setTimeout(orbit.draw(200), 2500);
-    window.setTimeout(orbit.draw(255), 3000);
+    window.setTimeout(orbit.draw(135 * sineCounter), 1500);
+    window.setTimeout(orbit.draw(200 * sineCounter), 2500);
+    window.setTimeout(orbit.draw(255 * sineCounter), 3000);
 
-    line.draw(250, 100);
+    line.draw(250 , 100);
     line.draw(850, 100);
     line.draw(130, 460);
     line.draw(900, 460);
     line.draw(840, 800);
     line.draw(275, 750);
 
+    let newCount = this.state.counter < 100 ? this.state.counter + 0.5 : 0;
+    this.setState({ counter: newCount });
     const globalId = window.requestAnimationFrame(this.updateCanvas);
     this.setState({ globalId: globalId });
   }
