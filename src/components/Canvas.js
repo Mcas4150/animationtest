@@ -26,17 +26,39 @@ export default class Canvas extends Component {
   }
 
   initCanvas() {
-    sun.src = "https://mdn.mozillademos.org/files/1456/Canvas_sun.png";
-    moon.src = "https://mdn.mozillademos.org/files/1443/Canvas_moon.png";
-    earth.src = "https://mdn.mozillademos.org/files/1429/Canvas_earth.png";
+    // sun.src = "https://mdn.mozillademos.org/files/1456/Canvas_sun.png";
+    // moon.src = "https://mdn.mozillademos.org/files/1443/Canvas_moon.png";
+    // earth.src = "https://mdn.mozillademos.org/files/1429/Canvas_earth.png";
     window.requestAnimationFrame(this.updateCanvas);
   }
 
   updateCanvas() {
-    let ctx = this.refs.canvas.getContext("2d");
 
+
+    let ctx = this.props.active ? this.refs.canvas.getContext("2d") : null
+
+    const ball = {
+      x: 100,
+      y: 100,
+      radius: 25,
+      color: "blue",
+      draw: function() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+        ctx.closePath();
+        // ctx.rotate(
+        //   ((2 * Math.PI) / 60) * time.getSeconds() +
+        //     ((2 * Math.PI) / 60000) * time.getMilliseconds()
+        // );
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      },
+      rotate: function(){
+
+      }
+    };
     ctx.globalCompositeOperation = "destination-over";
-    ctx.clearRect(0, 0, 700, 700); // clear canvas
+    ctx.clearRect(0, 0, 2000, 2000); // clear canvas
 
     ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
     ctx.strokeStyle = "rgba(0, 153, 255, 0.4)";
@@ -53,6 +75,16 @@ export default class Canvas extends Component {
     ctx.fillRect(0, -12, 40, 24); // Shadow
     ctx.drawImage(earth, -12, -12);
 
+    ctx.translate(40, 20);
+    // earth 2
+    ctx.rotate(
+      ((2 * Math.PI) / 60) * time.getSeconds() +
+        ((2 * Math.PI) / 60000) * time.getMilliseconds()
+    );
+    ctx.translate(105, 0);
+    ctx.fillRect(0, -12, 40, 24); // Shadow
+    ctx.drawImage(earth, -12, -12);
+
     // Moon
     ctx.save();
     ctx.rotate(
@@ -60,26 +92,29 @@ export default class Canvas extends Component {
         ((2 * Math.PI) / 6000) * time.getMilliseconds()
     );
     ctx.translate(0, 28.5);
-    ctx.drawImage(moon, -3.5, -3.5);
+    // ctx.drawImage(moon, -3.5, -3.5);
+
+    ctx.fillStyle = "blue";
     ctx.restore();
 
     ctx.restore();
+
+    ball.draw();
+    // ball.rotate();
 
     ctx.beginPath();
     ctx.arc(150, 150, 105, 0, Math.PI * 2, false); // Earth orbit
     ctx.stroke();
 
-
     ctx.beginPath();
     ctx.arc(150, 150, 155, 0, Math.PI * 2, false); // Earth orbit
     ctx.stroke();
-
 
     ctx.beginPath();
     ctx.arc(150, 150, 200, 0, Math.PI * 2, false); // Earth orbit
     ctx.stroke();
 
-    ctx.drawImage(sun, 0, 0, 300, 300);
+    ctx.drawImage(sun, 0, 0, 1000, 1000);
 
     window.requestAnimationFrame(this.updateCanvas);
     // const height = window.innerHeight;
@@ -96,9 +131,9 @@ export default class Canvas extends Component {
     // ctx.fill();
   }
 
-  // unmountCanvas(){
-  //   ctx =
-  // }
+  unmountCanvas() {
+    const ctx = null;
+  }
 
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
@@ -107,27 +142,27 @@ export default class Canvas extends Component {
   render() {
     const { active } = this.props;
     return (
-      <canvas
+      // <canvas
+      //   className="canvas"
+      //   ref={(c) => this.context = c.getContext('2d')}
+      //   width={window.innerHeight / 1.5}
+      //   height={window.innerHeight}
+      //   style={{ position: "fixed", zIndex: "2" }}
+      // />
+      <div>
+
+        {active ? (
+          <canvas
             className="canvas"
             ref="canvas"
             width={window.innerHeight / 2}
             height={window.innerHeight}
             style={{ position: "fixed", zIndex: "2" }}
           />
-      // <div>
-
-      //   {active ? (
-      //     <canvas
-      //       className="canvas"
-      //       ref="canvas"
-      //       width={window.innerHeight / 2}
-      //       height={window.innerHeight}
-      //       style={{ position: "fixed", zIndex: "2" }}
-      //     />
-      //   ) : (
-      //     <canvas/>
-      //   )}
-      // </div>
+        ) : (
+          <div/>
+        )}
+      </div>
     );
   }
 }

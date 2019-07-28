@@ -97,7 +97,7 @@ const styles = {
     top: 0,
     position: "fixed",
     right: 0,
-
+    zIndex: 3,
     height: "62.5vh",
     width: "100vw",
     backgroundColor: "grey",
@@ -107,6 +107,7 @@ const styles = {
     position: "fixed",
     top: 0,
     right: 0,
+    zIndex: 3,
     height: "100vh",
     width: "67vw",
     backgroundColor: "white",
