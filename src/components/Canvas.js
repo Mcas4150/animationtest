@@ -44,7 +44,7 @@ export default class Canvas extends Component {
 
     const circle = {
       draw: function(x, y, radius, color) {
-        ctx.translate(x * sineCounter, y * sineCounter);
+        ctx.translate(x * sineCounter * sineCounter, y * sineCounter * sineCounter);
         ctx.beginPath();
         ctx.arc(
           20,
@@ -92,9 +92,13 @@ export default class Canvas extends Component {
 
     ctx.restore();
 
-    window.setTimeout(orbit.draw(135), 1500);
-    window.setTimeout(orbit.draw(200), 2500);
-    window.setTimeout(orbit.draw(255), 3000);
+    window.setTimeout(orbit.draw(70), 1500);
+    window.setTimeout(orbit.draw(135 * sineCounter), 1500);
+    window.setTimeout(orbit.draw(200 * sineCounter * sineCounter), 2500);
+    window.setTimeout(
+      orbit.draw(255 * sineCounter * sineCounter * sineCounter),
+      3000
+    );
 
     line.draw(250, 100);
     line.draw(850, 100);
@@ -103,7 +107,7 @@ export default class Canvas extends Component {
     line.draw(840, 800);
     line.draw(275, 750);
 
-    let newCount = this.state.counter < 100 ? this.state.counter + 1 : 0;
+    let newCount = this.state.counter < 150 ? this.state.counter + 1 : 0;
     this.setState({ counter: newCount });
     const globalId = window.requestAnimationFrame(this.updateCanvas);
     this.setState({ globalId: globalId });
