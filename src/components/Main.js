@@ -6,7 +6,7 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startAnimation: false
+      startAnimation: true
     };
     this.handleClick = this.handleClick.bind(this);
     // this.changeRelease = this.changeRelease.bind(this);

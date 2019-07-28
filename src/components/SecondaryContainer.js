@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import logo from "../x-logo.png";
 
 export default class SecondaryContainer extends Component {
   constructor(props) {
@@ -56,33 +57,42 @@ export default class SecondaryContainer extends Component {
                 alignContent: "center"
               }}
             >
-              <div
+           <div
                 className="secondary--component"
-                style={{ alignItems: "center" }}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", justiftyContent: "center", margin: "25px" }}
               >
-                <h2>Component 1</h2>
-                <div> dumb image</div>
+                <div style={{ color: "turquoise", fontSize: "1.5rem", marginBottom: "25px" }}>
+                  Component 1
+                </div>
+                <img src={logo} alt={"logo"} style={{width: "150px"}}/>
               </div>
               <div
                 className="secondary--component"
-                style={{ alignItems: "center" }}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", justiftyContent: "center", margin: "25px" }}
               >
-                <h2>Component 2</h2>
-                <div> dumb image</div>
+                <div style={{ color: "turquoise", fontSize: "1.5rem", marginBottom: "25px" }}>
+                  Component 2
+                </div>
+                <img src={logo} alt={"logo"} style={{width: "150px"}}/>
               </div>
               <div
                 className="secondary--component"
-                style={{ alignItems: "center" }}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", justiftyContent: "center", margin: "25px" }}
               >
-                <h2>Component 3</h2>
-                <div> dumb image</div>
+                <div style={{ color: "turquoise", fontSize: "1.5rem", marginBottom: "25px"}}>
+                  Component 3
+                </div>
+                <img src={logo} alt={"logo"} style={{width: "150px"}}/>
               </div>
+
               <div
                 className="secondary--component"
-                style={{ alignItems: "center" }}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", justiftyContent: "center", margin: "25px" }}
               >
-                <h2>Component 4</h2>
-                <div> dumb image</div>
+                <div style={{ color: "turquoise", fontSize: "1.5rem", marginBottom: "25px" }}>
+                  Component 4
+                </div>
+                <img src={logo} alt={"logo"} style={{width: "150px"}}/>
               </div>
             </div>
           )}
@@ -101,7 +111,7 @@ const styles = {
     height: "37.5vh",
     width: "100vw",
     backgroundColor: "lightgrey",
-    transition: "all 1s ease-out, backgroundColor 3.5s ease-in"
+    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-in"
   },
   end: {
     position: "fixed",
@@ -110,6 +120,9 @@ const styles = {
     height: "100vh",
     width: "33vw",
     backgroundColor: "grey",
-    transition: "all 1s ease-out, backgroundColor 3.5s ease-out"
+    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-out"
   }
 };
+
+
+

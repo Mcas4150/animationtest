@@ -13,7 +13,7 @@ export default class Canvas extends Component {
     window.addEventListener("resize", this.updateWindowDimensions);
     let globalId = window.requestAnimationFrame(this.updateCanvas);
     this.setState({
-    
+
       globalId: globalId
     });
 
@@ -86,8 +86,8 @@ export default class Canvas extends Component {
     ctx.restore();
 
     ctx.restore();
-
-    ball.draw();
+    window.setTimeout(ball.draw(),  2000)
+    // ball.draw();
     // ball.rotate();
 
     ctx.beginPath();
@@ -129,7 +129,7 @@ export default class Canvas extends Component {
       <canvas
         className="canvas"
         ref="canvas"
-        width={window.innerHeight / 1.5}
+        width={window.innerWidth * .68}
         height={window.innerHeight}
         style={{ position: "fixed", zIndex: "2" }}
       />

@@ -41,7 +41,7 @@ export default class PrimaryContainer extends Component {
                 display: "flex",
                 justifyContent: "center",
                 alignContent: "center",
-                marginTop: "25%"
+
               }}
             >
               <Canvas />
@@ -54,7 +54,7 @@ export default class PrimaryContainer extends Component {
 
                 flexDirection: "column",
                 alignItems: "center",
-                border: "solid 1px white",
+                border: "solid 3px white",
                 height: "40vh",
                 width: "80vw",
                 margin: "35px",
@@ -101,7 +101,7 @@ const styles = {
     height: "62.5vh",
     width: "100vw",
     backgroundColor: "grey",
-    transition: "all 1s ease-out, backgroundColor 3.5s ease-in"
+    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-in"
   },
   end: {
     position: "fixed",
@@ -111,6 +111,6 @@ const styles = {
     height: "100vh",
     width: "67vw",
     backgroundColor: "white",
-    transition: "all 1s ease-out, backgroundColor 3.5s ease-out"
+    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-out"
   }
 };
