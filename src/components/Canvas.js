@@ -27,8 +27,6 @@ export default class Canvas extends Component {
     let ctx = this.refs.canvas.getContext("2d");
     var time = new Date();
 
-
-
     // const earth = {
     //   x: 500,
     //   y: 300,
@@ -67,24 +65,26 @@ export default class Canvas extends Component {
 
     // orbit 1
     ctx.rotate(
-      ((2 * Math.PI) / 60) * time.getSeconds() +
-        ((2 * Math.PI) / 60000) * time.getMilliseconds()
-    );
+    (  ((2 * Math.PI) / 60) * time.getSeconds() +
+        ((2 * Math.PI) / 60000) * time.getMilliseconds() ) * 3
+    ) ;
 
     ctx.translate(50, 0);
+    ctx.beginPath();
+    ctx.arc(20, 20, 8, 0, Math.PI * 2, true);
+    ctx.fillStyle = "turquoise";
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.translate(60, -60);
     ctx.beginPath();
     ctx.arc(20, 20, 15, 0, Math.PI * 2, true);
     ctx.stroke();
 
-    ctx.translate(60, 0);
+    ctx.translate(30, -85);
     ctx.beginPath();
-    ctx.arc(75, 75, 15, 0, Math.PI * 2, true);
-    ctx.stroke();
-
-    ctx.translate(65, 0);
-    ctx.beginPath();
-    ctx.arc(65, 65, 15, 0, Math.PI * 2, true);
-    ctx.fillStyle = "blue";
+    ctx.arc(20, 20, 15, 0, Math.PI * 2, true);
+    ctx.fillStyle = "turquoise";
     ctx.stroke();
     ctx.fill();
 
@@ -92,7 +92,7 @@ export default class Canvas extends Component {
 
     ctx.moveTo(800, 300);
     ctx.lineTo(200, 100);
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "turquoise";
     ctx.restore();
 
     ctx.restore();
