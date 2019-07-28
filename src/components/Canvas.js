@@ -23,24 +23,39 @@ export default class Canvas extends Component {
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
-
-
-
   updateCanvas() {
     let ctx = this.refs.canvas.getContext("2d");
     var time = new Date();
     let angle = 0;
 
-
-
     const orbit = {
-      draw: function() {
+      draw: function(radius) {
         ctx.beginPath();
-        ctx.arc(550, 460, 135, 0, Math.PI * 2, false); // Earth orbit
+        ctx.arc(550, 460, radius, 0, Math.PI * 2, false); // Earth orbit
         ctx.fillStyle = "deepskyblue";
         ctx.stroke();
       },
       rotate: function() {}
+    };
+
+    const circle = {
+      draw: function(radius) {
+        ctx.beginPath();
+        ctx.arc(20, 20, radius, 0, Math.PI * 2, true);
+        ctx.fillStyle = "deepskyblue";
+        ctx.stroke();
+        ctx.fill();
+      }
+    };
+    
+    const line = {
+      draw: function(x, y) {
+        ctx.restore();
+        ctx.moveTo(550, 460);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = "turqoise";
+        ctx.stroke();
+      }
     };
 
     // ctx.globalCompositeOperation = "destination-over";
@@ -61,24 +76,13 @@ export default class Canvas extends Component {
     );
 
     ctx.translate(50, 0);
-    ctx.beginPath();
-    ctx.arc(20, 20, 8, 0, Math.PI * 2, true);
-    ctx.fillStyle = "deepskyblue";
-    ctx.stroke();
-    ctx.fill();
+    circle.draw(8);
 
     ctx.translate(60, -60);
-    ctx.beginPath();
-    ctx.arc(20, 20, 15 * Math.abs(Math.cos(angle)), 0, Math.PI * 2, true);
-    ctx.fillStyle = "deepskyblue";
-    ctx.stroke();
+    circle.draw(15 * Math.abs(Math.cos(angle)));
 
     ctx.translate(30, -85);
-    ctx.beginPath();
-    ctx.arc(20, 20, 15 * Math.abs(Math.cos(angle)), 0, Math.PI * 2, true);
-    ctx.fillStyle = "deepskyblue";
-    ctx.stroke();
-    ctx.fill();
+    circle.draw(15 * Math.abs(Math.cos(angle)));
 
     ctx.translate(0, 28.5);
 
@@ -88,76 +92,19 @@ export default class Canvas extends Component {
     ctx.restore();
 
     ctx.restore();
-    window.setTimeout(orbit.draw(), 1500);
+    window.setTimeout(orbit.draw(135), 1500);
+    window.setTimeout(orbit.draw(200), 2500);
+    window.setTimeout(orbit.draw(255), 3000);
 
-    // ctx.beginPath();
-    // ctx.arc(550, 460, 135, 0, Math.PI * 2, false); // Earth orbit
-    // ctx.stroke();
+    line.draw(250, 100);
+    line.draw(850, 100);
+    line.draw(130, 460);
+    line.draw(900, 460);
+    line.draw(840, 800);
+    line.draw(275, 750);
 
-    ctx.beginPath();
-
-    // let arcX = 90;
-    // let arcY = 0;
-
-    // ctx.arc(arcX, arcY, 75, 0, Math.PI * 2, false); // Earth orbit
-    // ctx.stroke();
-    // arcX += 1;
-    // arcY += 1;
-    ctx.beginPath();
-    ctx.arc(550, 460, 200, Math.PI * 2, false); // Earth orbit
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.arc(550, 460, 255, 0, Math.PI * 2, false); // Earth orbit
-    ctx.stroke();
-
-    ctx.restore();
-    ctx.moveTo(550, 460);
-    ctx.lineTo(250, 100);
-    ctx.strokeStyle = "deepskyblue";
-    ctx.stroke();
-
-    ctx.restore();
-    ctx.moveTo(550, 460);
-    ctx.lineTo(850, 100);
-    ctx.strokeStyle = "deepskyblue";
-    ctx.stroke();
-
-    ctx.restore();
-
-    ctx.moveTo(550, 460);
-    ctx.lineTo(130, 460);
-    ctx.strokeStyle = "deepskyblue";
-    ctx.stroke();
-
-    ctx.restore();
-
-    ctx.moveTo(550, 460);
-    ctx.lineTo(900, 460);
-    ctx.strokeStyle = "deepskyblue";
-    ctx.stroke();
-
-    ctx.restore();
-
-    ctx.moveTo(550, 460);
-    ctx.lineTo(840, 800);
-    ctx.strokeStyle = "deepskyblue";
-    ctx.stroke();
-
-    ctx.restore();
-
-    ctx.moveTo(550, 460);
-    ctx.lineTo(275, 750);
-    ctx.strokeStyle = "deepskyblue";
-    ctx.stroke();
-
-    ctx.restore();
-
-
-
-      const globalId = window.requestAnimationFrame(this.updateCanvas);
-      this.setState({ globalId: globalId });
-
+    const globalId = window.requestAnimationFrame(this.updateCanvas);
+    this.setState({ globalId: globalId });
   }
 
   updateWindowDimensions() {
