@@ -104,7 +104,6 @@ const styles = {
     transition: "all 1s ease-out, backgroundColor 3.5s ease-in"
   },
   end: {
-
     position: "fixed",
     bottom: 0,
     left: 0,

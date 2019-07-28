@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Canvas from "./Canvas";
 
 export default class PrimaryContainer extends Component {
   constructor(props) {
@@ -39,10 +40,11 @@ export default class PrimaryContainer extends Component {
                 height: "100vh",
                 display: "flex",
                 justifyContent: "center",
-                alignContent: "center"
+                alignContent: "center",
+                marginTop: "25%"
               }}
             >
-              Canvas
+              <Canvas active={started} />
             </div>
           ) : (
             <div
@@ -60,7 +62,12 @@ export default class PrimaryContainer extends Component {
               }}
             >
               <div
-                style={{ color: "white", fontSize: "3rem", fontWeight: "600", textAlign: "center" }}
+                style={{
+                  color: "white",
+                  fontSize: "3rem",
+                  fontWeight: "600",
+                  textAlign: "center"
+                }}
               >
                 Strategic Partnerships
               </div>
@@ -102,7 +109,7 @@ const styles = {
     right: 0,
     height: "100vh",
     width: "67vw",
-    backgroundColor: "lightgrey",
+    backgroundColor: "white",
     transition: "all 1s ease-out, backgroundColor 3.5s ease-out"
   }
 };
