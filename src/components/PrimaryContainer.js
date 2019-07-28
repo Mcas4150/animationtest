@@ -44,7 +44,7 @@ export default class PrimaryContainer extends Component {
                 marginTop: "25%"
               }}
             >
-              <Canvas active={started} />
+              <Canvas />
             </div>
           ) : (
             <div
