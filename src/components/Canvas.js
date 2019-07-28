@@ -65,9 +65,10 @@ export default class Canvas extends Component {
 
     // orbit 1
     ctx.rotate(
-    (  ((2 * Math.PI) / 60) * time.getSeconds() +
-        ((2 * Math.PI) / 60000) * time.getMilliseconds() ) * 3
-    ) ;
+      (((2 * Math.PI) / 60) * time.getSeconds() +
+        ((2 * Math.PI) / 60000) * time.getMilliseconds()) *
+        5
+    );
 
     ctx.translate(50, 0);
     ctx.beginPath();
@@ -112,6 +113,18 @@ export default class Canvas extends Component {
 
     ctx.beginPath();
     ctx.arc(550, 460, 255, 0, Math.PI * 2, false); // Earth orbit
+    ctx.stroke();
+
+    ctx.restore();
+    ctx.moveTo(550, 460);
+    ctx.lineTo(250, 100);
+    ctx.strokeStyle = "turquoise";
+    ctx.stroke();
+
+     ctx.restore();
+    ctx.moveTo(550, 460);
+    ctx.lineTo(850, 100);
+    ctx.strokeStyle = "turquoise";
     ctx.stroke();
 
     const globalId = window.requestAnimationFrame(this.updateCanvas);
