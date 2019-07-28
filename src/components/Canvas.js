@@ -11,7 +11,7 @@ export default class Canvas extends Component {
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
-    let globalId = window.setTimeout(this.updateCanvas, 500);
+    let globalId = window.setTimeout(this.updateCanvas, 100);
     // let globalId = window.requestAnimationFrame(this.updateCanvas);
     this.setState({
       globalId: globalId
@@ -39,15 +39,15 @@ export default class Canvas extends Component {
     };
 
     const circle = {
-      draw: function(radius) {
+      draw: function(radius, color) {
         ctx.beginPath();
         ctx.arc(20, 20, radius, 0, Math.PI * 2, true);
-        ctx.fillStyle = "deepskyblue";
+        ctx.fillStyle = color;
         ctx.stroke();
         ctx.fill();
       }
     };
-    
+
     const line = {
       draw: function(x, y) {
         ctx.restore();
@@ -59,10 +59,9 @@ export default class Canvas extends Component {
     };
 
     // ctx.globalCompositeOperation = "destination-over";
-    ctx.clearRect(0, 0, 2000, 2000); // clear canvas
+    ctx.clearRect(0, 0, 2000, 2000);
 
     ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
-    // ctx.strokeStyle = "rgba(0, 153, 255, 0.4)";
     ctx.strokeStyle = "darkgrey";
     ctx.save();
     ctx.moveTo(0, this.state.height / 2);
@@ -76,20 +75,13 @@ export default class Canvas extends Component {
     );
 
     ctx.translate(50, 0);
-    circle.draw(8);
+    circle.draw(8, "deepskyblue");
 
     ctx.translate(60, -60);
-    circle.draw(15 * Math.abs(Math.cos(angle)));
+    circle.draw(15 * Math.abs(Math.cos(angle)), "white");
 
     ctx.translate(30, -85);
-    circle.draw(15 * Math.abs(Math.cos(angle)));
-
-    ctx.translate(0, 28.5);
-
-    ctx.moveTo(800, 300);
-    ctx.lineTo(200, 100);
-    ctx.fillStyle = "deepskyblue";
-    ctx.restore();
+    circle.draw(15 * Math.abs(Math.cos(angle)), "deepskyblue");
 
     ctx.restore();
     window.setTimeout(orbit.draw(135), 1500);
