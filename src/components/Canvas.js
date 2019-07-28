@@ -44,7 +44,10 @@ export default class Canvas extends Component {
 
     const circle = {
       draw: function(x, y, radius, color) {
-        ctx.translate(x * sineCounter * sineCounter, y * sineCounter * sineCounter);
+        ctx.translate(
+          x * sineCounter * sineCounter,
+          y * sineCounter * sineCounter
+        );
         ctx.beginPath();
         ctx.arc(
           20,
@@ -64,7 +67,8 @@ export default class Canvas extends Component {
       draw: function(x, y) {
         ctx.restore();
         ctx.moveTo(centerX, centerY);
-        ctx.lineTo(x, y);
+        // ctx.lineTo(x, y);
+        ctx.lineTo(centerX + x * sineCounter * sineCounter, centerY + y * sineCounter * sineCounter);
         ctx.strokeStyle = "turqoise";
         ctx.stroke();
       }
@@ -96,16 +100,16 @@ export default class Canvas extends Component {
     window.setTimeout(orbit.draw(135 * sineCounter), 1500);
     window.setTimeout(orbit.draw(200 * sineCounter * sineCounter), 2500);
     window.setTimeout(
-      orbit.draw(255 * sineCounter * sineCounter * sineCounter),
+      orbit.draw(255 * sineCounter * sineCounter ),
       3000
     );
 
-    line.draw(250, 100);
-    line.draw(850, 100);
-    line.draw(130, 460);
-    line.draw(900, 460);
-    line.draw(840, 800);
-    line.draw(275, 750);
+    line.draw(-300, -360);
+    line.draw(300, -360);
+    line.draw(-360, 0);
+    line.draw(360, 0);
+    line.draw(300, 360);
+    line.draw(-300, 360);
 
     let newCount = this.state.counter < 150 ? this.state.counter + 1 : 0;
     this.setState({ counter: newCount });
