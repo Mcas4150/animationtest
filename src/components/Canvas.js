@@ -52,7 +52,7 @@ export default class Canvas extends Component {
         ctx.arc(
           20,
           20,
-          radius * sineCounter * sineCounter,
+          radius * sineCounter * sineCounter * sineCounter,
           0,
           Math.PI * 2,
           true
@@ -87,7 +87,7 @@ export default class Canvas extends Component {
     ctx.rotate(
       (((2 * Math.PI) / 60) * time.getSeconds() +
         ((2 * Math.PI) / 60000) * time.getMilliseconds()) *
-        5
+        sineCounter
     );
 
     circle.draw(50, 0, 8, "deepskyblue");
@@ -96,20 +96,20 @@ export default class Canvas extends Component {
 
     ctx.restore();
 
-    window.setTimeout(orbit.draw(70), 1500);
-    window.setTimeout(orbit.draw(135 * sineCounter), 1500);
-    window.setTimeout(orbit.draw(200 * sineCounter * sineCounter), 2500);
+    window.setTimeout(orbit.draw(70), 300);
+    window.setTimeout(orbit.draw(135 * sineCounter), 800);
+    window.setTimeout(orbit.draw(200 * sineCounter * sineCounter), 1000);
     window.setTimeout(
       orbit.draw(255 * sineCounter * sineCounter ),
       3000
     );
 
-    line.draw(-300, -360);
-    line.draw(300, -360);
+    line.draw(-260, -300);
+    line.draw(260, -300);
     line.draw(-360, 0);
     line.draw(360, 0);
-    line.draw(300, 360);
-    line.draw(-300, 360);
+    line.draw(260, 300);
+    line.draw(-260, 300);
 
     let newCount = this.state.counter < 150 ? this.state.counter + 1 : 0;
     this.setState({ counter: newCount });
