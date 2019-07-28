@@ -26,15 +26,16 @@ export default class Canvas extends Component {
   updateCanvas() {
     let ctx = this.refs.canvas.getContext("2d");
     var time = new Date();
-    let angle = 0;
 
-    let sineCounter = Math.abs(Math.sin(this.state.counter/100));
-    let cosineCounter = Math.abs(Math.cos(this.state.counter/100));
+    let centerX = 550;
+    let centerY = 460;
+    let sineCounter = Math.abs(Math.sin(this.state.counter / 100));
+    let cosineCounter = Math.abs(Math.cos(this.state.counter / 100));
 
     const orbit = {
       draw: function(radius) {
         ctx.beginPath();
-        ctx.arc(550, 460, radius, 0, Math.PI * 2, false); // Earth orbit
+        ctx.arc(centerX, centerY, radius * sineCounter, 0, Math.PI * 2, false); // Earth orbit
         ctx.fillStyle = "deepskyblue";
         ctx.stroke();
       },
@@ -42,9 +43,17 @@ export default class Canvas extends Component {
     };
 
     const circle = {
-      draw: function(radius, color) {
+      draw: function(x, y, radius, color) {
+        ctx.translate(x * sineCounter, y * sineCounter);
         ctx.beginPath();
-        ctx.arc(20, 20, radius, 0, Math.PI * 2, true);
+        ctx.arc(
+          20,
+          20,
+          radius * sineCounter * sineCounter,
+          0,
+          Math.PI * 2,
+          true
+        );
         ctx.fillStyle = color;
         ctx.stroke();
         ctx.fill();
@@ -54,7 +63,7 @@ export default class Canvas extends Component {
     const line = {
       draw: function(x, y) {
         ctx.restore();
-        ctx.moveTo(550, 460);
+        ctx.moveTo(centerX, centerY);
         ctx.lineTo(x, y);
         ctx.strokeStyle = "turqoise";
         ctx.stroke();
@@ -68,7 +77,7 @@ export default class Canvas extends Component {
     ctx.strokeStyle = "darkgrey";
     ctx.save();
     ctx.moveTo(0, this.state.height / 2);
-    ctx.translate(550, 460);
+    ctx.translate(centerX, centerY);
 
     // orbit 1
     ctx.rotate(
@@ -77,28 +86,24 @@ export default class Canvas extends Component {
         5
     );
 
-    ctx.translate(50 * sineCounter , 0);
-    circle.draw(8 * sineCounter, "deepskyblue");
-
-    ctx.translate(60 * sineCounter, -60 * sineCounter);
-    circle.draw(15 * sineCounter, "white");
-
-    ctx.translate(30 * sineCounter, -85 * sineCounter);
-    circle.draw(15 * sineCounter, "deepskyblue");
+    circle.draw(50, 0, 8, "deepskyblue");
+    circle.draw(60, -60, 15, "white");
+    circle.draw(30, -85, 15, "deepskyblue");
 
     ctx.restore();
-    window.setTimeout(orbit.draw(135 * sineCounter), 1500);
-    window.setTimeout(orbit.draw(200 * sineCounter), 2500);
-    window.setTimeout(orbit.draw(255 * sineCounter), 3000);
 
-    line.draw(250 , 100);
+    window.setTimeout(orbit.draw(135), 1500);
+    window.setTimeout(orbit.draw(200), 2500);
+    window.setTimeout(orbit.draw(255), 3000);
+
+    line.draw(250, 100);
     line.draw(850, 100);
     line.draw(130, 460);
     line.draw(900, 460);
     line.draw(840, 800);
     line.draw(275, 750);
 
-    let newCount = this.state.counter < 100 ? this.state.counter + 0.5 : 0;
+    let newCount = this.state.counter < 100 ? this.state.counter + 1 : 0;
     this.setState({ counter: newCount });
     const globalId = window.requestAnimationFrame(this.updateCanvas);
     this.setState({ globalId: globalId });
