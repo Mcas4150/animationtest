@@ -68,7 +68,10 @@ export default class Canvas extends Component {
         ctx.restore();
         ctx.moveTo(centerX, centerY);
         // ctx.lineTo(x, y);
-        ctx.lineTo(centerX + x * sineCounter * sineCounter, centerY + y * sineCounter * sineCounter);
+        ctx.lineTo(
+          centerX + x * sineCounter * sineCounter,
+          centerY + y * sineCounter * sineCounter
+        );
         ctx.strokeStyle = "turqoise";
         ctx.stroke();
       }
@@ -99,10 +102,7 @@ export default class Canvas extends Component {
     window.setTimeout(orbit.draw(70), 300);
     window.setTimeout(orbit.draw(135 * sineCounter), 800);
     window.setTimeout(orbit.draw(200 * sineCounter * sineCounter), 1000);
-    window.setTimeout(
-      orbit.draw(255 * sineCounter * sineCounter ),
-      3000
-    );
+    window.setTimeout(orbit.draw(255 * sineCounter * sineCounter), 3000);
 
     line.draw(-260, -300);
     line.draw(260, -300);
@@ -111,9 +111,16 @@ export default class Canvas extends Component {
     line.draw(260, 300);
     line.draw(-260, 300);
 
-    let newCount = this.state.counter < 150 ? this.state.counter + 1 : 0;
+    let newCount = this.state.counter < 1050 ? this.state.counter + 1 : 0;
+
+   let globalId = null;
     this.setState({ counter: newCount });
-    const globalId = window.requestAnimationFrame(this.updateCanvas);
+    if (this.state.counter < 150) {
+      globalId = window.requestAnimationFrame(this.updateCanvas);
+    } else {
+      globalId = null;
+    }
+
     this.setState({ globalId: globalId });
   }
 
