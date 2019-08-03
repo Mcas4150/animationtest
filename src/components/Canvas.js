@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { font, color } from "../shared/style";
+import { color } from "../shared/style";
 
 export default class Canvas extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ export default class Canvas extends Component {
     const orbit = {
       draw: function(radius) {
         ctx.beginPath();
-        ctx.arc(centerX, centerY, radius * sineCounter, 0, Math.PI * 2, false); // Earth orbit
+        ctx.arc(centerX, centerY, radius * sineCounter, 0, Math.PI * 2, false);
         ctx.fillStyle = color.skyblue;
         ctx.stroke();
       },
@@ -101,7 +101,9 @@ export default class Canvas extends Component {
     circle.draw(40, -height / 10, 15, color.skyblue);
     // ctx.restore();
     ctx.font = "30px Arial";
+
     ctx.fillText("Hello World", 10, 80);
+
     ctx.rotate(
       (((2 * Math.PI) / 60) * time.getSeconds() +
         ((2 * Math.PI) / 60000) * time.getMilliseconds()) *
@@ -113,7 +115,7 @@ export default class Canvas extends Component {
     window.setTimeout(orbit.draw(70), 300);
     window.setTimeout(orbit.draw(135 * sineCounter), 800);
     window.setTimeout(
-      orbit.draw((height / 4) * sineCounter * sineCounter),
+      orbit.draw(190 * sineCounter * sineCounter),
       1000
     );
     window.setTimeout(orbit.draw(255 * sineCounter * sineCounter), 3000);

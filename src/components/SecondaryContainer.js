@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "../x-logo.png";
 import styled from "@emotion/styled";
 import { font, color } from "../shared/style";
-import { FlexAlignCenter } from "../shared/components";
+import { FlexAlignCenter, MediaQ } from "../shared/components";
 
 export default class SecondaryContainer extends Component {
   render() {
@@ -51,7 +51,20 @@ const ComponentContainer = styled.div(props => ({
   }`,
   WebkitTransition: `all 1s ease-in-out, backgroundColor 1.5s ${
     props.started ? "ease-out" : "ease-in"
-  }`
+  }`,
+  [MediaQ[2]]: {
+    width: "100vw",
+    height: "25vh",
+    bottom: !props.started && 0,
+    top: props.started && 0,
+    transition: `all 1s ease-in-out, backgroundColor 1.5s ${
+      props.started ? "ease-out" : "ease-in"
+    }`,
+    WebkitTransition: `all 1s ease-in-out, backgroundColor 1.5s ${
+      props.started ? "ease-out" : "ease-in"
+    }`
+  }
+
 }));
 
 const HeaderContainer = styled(FlexAlignCenter)`
