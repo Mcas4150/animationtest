@@ -6,7 +6,7 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startAnimation: true
+      startAnimation: false
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -20,7 +20,7 @@ export default class Main extends Component {
   render() {
     const { startAnimation } = this.state;
     return (
-      <div className="Main" onClick={this.handleClick}>
+      <div onClick={this.handleClick}>
         <PrimaryContainer started={startAnimation} />
         <SecondaryContainer started={startAnimation} />
       </div>

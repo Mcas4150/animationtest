@@ -1,20 +1,14 @@
 import React, { Component } from "react";
 import logo from "../x-logo.png";
 import styled from "@emotion/styled";
+import { font, color } from "../shared/style";
+import { FlexAlignCenter } from "../shared/components";
 
 export default class SecondaryContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
     const { started } = this.props;
     return (
-      <div
-        className="secondary-container"
-        style={started ? styles.end : styles.start}
-      >
+      <ComponentContainer started={started}>
         {started ? (
           <HeaderContainer>
             <Header>Marketing Strategies</Header>
@@ -40,72 +34,54 @@ export default class SecondaryContainer extends Component {
             </Item>
           </ItemsContainer>
         )}
-      </div>
+      </ComponentContainer>
     );
   }
 }
 
-const HeaderContainer = styled.div`
+const ComponentContainer = styled.div(props => ({
+  position: "fixed",
+  bottom: 0,
+  left: 0,
+  height: props.started ? "100vh" : "37.5vh",
+  width: props.started ? "33vw" : "100vw",
+  backgroundColor: props.started ? color.grey : color.lightgrey,
+  transition: `all 1s ease-in-out, backgroundColor 1.5s ${
+    props.started ? "ease-out" : "ease-in"
+  }`,
+  WebkitTransition: `all 1s ease-in-out, backgroundColor 1.5s ${
+    props.started ? "ease-out" : "ease-in"
+  }`
+}));
+
+const HeaderContainer = styled(FlexAlignCenter)`
   height: 100vh;
-  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
   text-align: center;
 `;
 
 const Header = styled.div`
-  font-size: 3rem;
-  color: white;
+  font-size: ${font.l};
+  color: ${color.white};
 `;
 
-const ItemsContainer = styled.div`
-  margin-top: -70px;
-  display: flex;
+const ItemsContainer = styled(FlexAlignCenter)`
   justify-content: center;
-  align-content: center;
+  margin-top: -75px;
 `;
 
-const Item = styled.div`
-  display: flex;
+const Item = styled(FlexAlignCenter)`
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   margin: 25px;
-  z-index: 5;
 `;
 
 const Title = styled.div`
-  color: turquoise;
-  font-size: 1.5rem;
+  color: ${color.turquoise};
+  font-size: ${font.s};
   margin-bottom: 25px;
 `;
 
 const Image = styled.img`
   width: 150px;
 `;
-
-const styles = {
-  start: {
-    position: "fixed",
-    bottom: 0,
-    left: 0,
-    // zIndex: 2,
-    height: "37.5vh",
-    width: "100vw",
-    backgroundColor: "lightgrey",
-    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-in",
-    WebkitTransition: "all 1s ease-in-out, backgroundColor 1.5s ease-in"
-  },
-  end: {
-    position: "fixed",
-    bottom: 0,
-    left: 0,
-
-    height: "100vh",
-    width: "33vw",
-    backgroundColor: "grey",
-    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-out",
-    WebkitTransition: "all 1s ease-in-out, backgroundColor 1.5s ease-out"
-  }
-};
