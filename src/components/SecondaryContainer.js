@@ -1,24 +1,12 @@
 import React, { Component } from "react";
 import logo from "../x-logo.png";
+import styled from "@emotion/styled";
 
 export default class SecondaryContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // open: true,
-      // currentColor: "white"
-    };
-    // this.handleUnClick = this.handleUnClick.bind(this);
-    // this.changeRelease = this.changeRelease.bind(this);
+    this.state = {};
   }
-
-  // componentDidMount() {
-  //   this.props.getReleases();
-  //   anime({
-  //     targets: ".navMenu--link",
-  //     translateX: -250
-  //   });
-  // }
 
   render() {
     const { started } = this.props;
@@ -27,135 +15,75 @@ export default class SecondaryContainer extends Component {
         className="secondary-container"
         style={started ? styles.end : styles.start}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignContent: "center"
-          }}
-        >
-          {started ? (
-            <div
-              className="secondary--title"
-              style={{
-                height: "100vh",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignContent: "center",
-                textAlign: "center",
-                fontSize: "3rem",
-                color: "white"
-              }}
-            >
-              Marketing Strategies
-            </div>
-          ) : (
-            <div
-              className="secondary--components"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignContent: "center",
-                marginTop: "-70px"
-              }}
-            >
-              <div
-                className="secondary--component"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justiftyContent: "center",
-                  margin: "25px",
-                  zIndex:"5"
-                }}
-              >
-                <div
-                  style={{
-                    color: "turquoise",
-                    fontSize: "1.5rem",
-                    marginBottom: "25px"
-                  }}
-                >
-                  Component 1
-                </div>
-                <img src={logo} alt={"logo"} style={{ width: "150px" }} />
-              </div>
-              <div
-                className="secondary--component"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justiftyContent: "center",
-                  margin: "25px",
-                  zIndex:"5"
-                }}
-              >
-                <div
-                  style={{
-                    color: "turquoise",
-                    fontSize: "1.5rem",
-                    marginBottom: "25px"
-                  }}
-                >
-                  Component 2
-                </div>
-                <img src={logo} alt={"logo"} style={{ width: "150px" }} />
-              </div>
-              <div
-                className="secondary--component"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justiftyContent: "center",
-                  margin: "25px",
-                  zIndex: "5"
-                }}
-              >
-                <div
-                  style={{
-                    color: "turquoise",
-                    fontSize: "1.5rem",
-                    marginBottom: "25px"
-                  }}
-                >
-                  Component 3
-                </div>
-                <img src={logo} alt={"logo"} style={{ width: "150px" }} />
-              </div>
+        {started ? (
+          <HeaderContainer>
+            <Header>Marketing Strategies</Header>
+          </HeaderContainer>
+        ) : (
+          <ItemsContainer>
+            <Item>
+              <Title>Component 1</Title>
+              <Image src={logo} alt={"logo"} />
+            </Item>
+            <Item>
+              <Title>Component 2</Title>
+              <Image src={logo} alt={"logo"} />
+            </Item>
+            <Item>
+              <Title>Component 3</Title>
+              <Image src={logo} alt={"logo"} />
+            </Item>
 
-              <div
-                className="secondary--component"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justiftyContent: "center",
-                  margin: "25px",
-                  zIndex: "5"
-                }}
-              >
-                <div
-                  style={{
-                    color: "turquoise",
-                    fontSize: "1.5rem",
-                    marginBottom: "25px"
-                  }}
-                >
-                  Component 4
-                </div>
-                <img src={logo} alt={"logo"} style={{ width: "150px" }} />
-              </div>
-            </div>
-          )}
-        </div>
+            <Item>
+              <Title>Component 4</Title>
+              <Image src={logo} alt={"logo"} />
+            </Item>
+          </ItemsContainer>
+        )}
       </div>
     );
   }
 }
+
+const HeaderContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+`;
+
+const Header = styled.div`
+  font-size: 3rem;
+  color: white;
+`;
+
+const ItemsContainer = styled.div`
+  margin-top: -70px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`;
+
+const Item = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 25px;
+  z-index: 5;
+`;
+
+const Title = styled.div`
+  color: turquoise;
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+`;
+
+const Image = styled.img`
+  width: 150px;
+`;
 
 const styles = {
   start: {
@@ -166,7 +94,8 @@ const styles = {
     height: "37.5vh",
     width: "100vw",
     backgroundColor: "lightgrey",
-    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-in"
+    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-in",
+    WebkitTransition: "all 1s ease-in-out, backgroundColor 1.5s ease-in"
   },
   end: {
     position: "fixed",
@@ -176,6 +105,7 @@ const styles = {
     height: "100vh",
     width: "33vw",
     backgroundColor: "grey",
-    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-out"
+    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-out",
+    WebkitTransition: "all 1s ease-in-out, backgroundColor 1.5s ease-out"
   }
 };

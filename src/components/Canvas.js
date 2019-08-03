@@ -26,11 +26,12 @@ export default class Canvas extends Component {
   updateCanvas() {
     let ctx = this.refs.canvas.getContext("2d");
     var time = new Date();
+    let width = this.refs.canvas.width;
+    let height = this.refs.canvas.height;
 
-    let centerX = 550;
-    let centerY = 460;
+    let centerX = width / 2;
+    let centerY = height / 2;
     let sineCounter = Math.abs(Math.sin(this.state.counter / 100));
-    let cosineCounter = Math.abs(Math.cos(this.state.counter / 100));
 
     const orbit = {
       draw: function(radius) {
@@ -83,7 +84,7 @@ export default class Canvas extends Component {
     ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
     ctx.strokeStyle = "darkgrey";
     ctx.save();
-    ctx.moveTo(0, this.state.height / 2);
+
     ctx.translate(centerX, centerY);
 
     // orbit 1
@@ -94,26 +95,38 @@ export default class Canvas extends Component {
     );
 
     circle.draw(50, 0, 8, "deepskyblue");
-    circle.draw(60, -60, 15, "white");
-    circle.draw(30, -85, 15, "deepskyblue");
+    circle.draw(60, -height / 12, 15, "white");
+    circle.draw(60, height / 12, 15, "white");
+    circle.draw(40, -height / 10, 15, "deepskyblue");
+    // ctx.restore();
+    ctx.font = "30px Arial";
+    ctx.fillText("Hello World", 10, 80);
+    ctx.rotate(
+      (((2 * Math.PI) / 60) * time.getSeconds() +
+        ((2 * Math.PI) / 60000) * time.getMilliseconds()) *
+        sineCounter
+    );
 
     ctx.restore();
 
     window.setTimeout(orbit.draw(70), 300);
     window.setTimeout(orbit.draw(135 * sineCounter), 800);
-    window.setTimeout(orbit.draw(200 * sineCounter * sineCounter), 1000);
+    window.setTimeout(
+      orbit.draw((height / 4) * sineCounter * sineCounter),
+      1000
+    );
     window.setTimeout(orbit.draw(255 * sineCounter * sineCounter), 3000);
 
-    line.draw(-260, -300);
-    line.draw(260, -300);
-    line.draw(-360, 0);
-    line.draw(360, 0);
-    line.draw(260, 300);
-    line.draw(-260, 300);
+    line.draw(-width / 4, -height / 3);
+    line.draw(width / 4, -height / 3);
+    line.draw(-width / 2.75, 0);
+    line.draw(width / 2.75, 0);
+    line.draw(width / 4, height / 3);
+    line.draw(-width / 4, height / 3);
 
-    let newCount = this.state.counter < 1050 ? this.state.counter + 1 : 0;
+    let newCount = this.state.counter < 150 ? this.state.counter + 1 : 0;
 
-   let globalId = null;
+    let globalId = null;
     this.setState({ counter: newCount });
     if (this.state.counter < 150) {
       globalId = window.requestAnimationFrame(this.updateCanvas);
@@ -131,6 +144,7 @@ export default class Canvas extends Component {
   render() {
     return (
       <canvas
+        id="canvas"
         className="canvas"
         ref="canvas"
         width={window.innerWidth * 0.68}

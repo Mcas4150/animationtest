@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "@emotion/styled";
 import Canvas from "./Canvas";
 
 export default class PrimaryContainer extends Component {
@@ -7,17 +8,7 @@ export default class PrimaryContainer extends Component {
     this.state = {
       currentStyle: styles.start
     };
-
-    // this.changeRelease = this.changeRelease.bind(this);
   }
-
-  // componentDidMount() {
-  //   this.props.getReleases();
-  //   anime({
-  //     targets: ".navMenu--link",
-  //     translateX: -250
-  //   });
-  // }
 
   render() {
     const { started } = this.props;
@@ -26,68 +17,19 @@ export default class PrimaryContainer extends Component {
         className="primary-container"
         style={started ? styles.end : styles.start}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignContent: "center"
-          }}
-        >
+        <div style={styles.centered}>
           {started ? (
-            <div
-              className="primary--canvas-container"
-              style={{
-                height: "100vh",
-                display: "flex",
-                justifyContent: "center",
-                alignContent: "center",
-
-              }}
-            >
+            <CanvasContainer>
               <Canvas />
-            </div>
+            </CanvasContainer>
           ) : (
-            <div
-              className="primary--box"
-              style={{
-                display: "flex",
-
-                flexDirection: "column",
-                alignItems: "center",
-                border: "solid 3px white",
-                height: "45vh",
-                width: "75vw",
-                margin: "35px",
-                marginTop: "75px",
-                padding: "50px"
-              }}
-            >
-              <div
-                style={{
-                  color: "white",
-                  fontSize: "2.5rem",
-                  fontWeight: "600",
-                  textAlign: "center",
-                  paddingTop: "40px"
-                }}
-              >
-                Strategic Partnerships
-              </div>
-              <div
-                style={{
-                  color: "white",
-                  fontSize: "1.5rem",
-                  fontWeight: "300",
-                  textAlign: "center",
-                  maxWidth: "600px",
-                  marginTop: "40px",
-                  letterSpacing: "2px"
-                }}
-              >
+            <Box>
+              <Header>Strategic Partnerships</Header>
+              <Description>
                 Our partnership with these highly regarded companies can lead us
                 to more traction and elevate our brand image by association.
-              </div>
-            </div>
+              </Description>
+            </Box>
           )}
         </div>
       </div>
@@ -95,7 +37,49 @@ export default class PrimaryContainer extends Component {
   }
 }
 
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 3px white;
+  height: 45vh;
+  width: 75vw;
+  margin: 35px;
+  margin-top: 75px;
+  padding: 50px;
+`;
+
+const Header = styled.div`
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 40px;
+`;
+
+const Description = styled.div`
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-align: center;
+  max-width: 600px;
+  margin-top: 40px;
+  letter-spacing: 2px;
+`;
+
+const CanvasContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`;
+
 const styles = {
+  centered: {
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "center"
+  },
   start: {
     top: 0,
     position: "fixed",
@@ -104,7 +88,8 @@ const styles = {
     height: "62.5vh",
     width: "100vw",
     backgroundColor: "grey",
-    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-in"
+    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-in",
+    WebkitTransition: "all 1s ease-in-out, backgroundColor 1.5s ease-in"
   },
   end: {
     position: "fixed",
@@ -114,6 +99,7 @@ const styles = {
     height: "100vh",
     width: "67vw",
     backgroundColor: "white",
-    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-out"
+    transition: "all 1s ease-in-out, backgroundColor 1.5s ease-out",
+    WebkitTransition: "all 1s ease-in-out, backgroundColor 1.5s ease-out"
   }
 };
