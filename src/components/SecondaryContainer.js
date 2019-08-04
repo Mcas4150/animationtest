@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import logo from "../x-logo.png";
+import backgroundPhoto from "../backgroundphoto.png";
 import styled from "@emotion/styled";
 import { font, color } from "../shared/style";
 import { FlexAlignCenter, MediaQ } from "../shared/components";
@@ -46,6 +47,8 @@ const ComponentContainer = styled.div(props => ({
   height: props.started ? "100vh" : "37.5vh",
   width: props.started ? "33vw" : "100vw",
   backgroundColor: props.started ? color.grey : color.lightgrey,
+  backgroundImage: props.started ? `url(${backgroundPhoto})`: "",
+  backgroundSize: `cover`,
   transition: `backgroundColor 1s, height 1s, width 1s `,
   WebkitTransition: `backgroundColor 1s, height 1s, width 1s `,
   [MediaQ[2]]: {
@@ -72,6 +75,7 @@ const HeaderContainer = styled(FlexAlignCenter)`
 const Header = styled.div`
   font-size: ${font.l};
   color: ${color.white};
+  padding: 50px;
 `;
 
 const ItemsContainer = styled(FlexAlignCenter)`

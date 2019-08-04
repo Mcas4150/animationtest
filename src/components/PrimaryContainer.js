@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "@emotion/styled";
+import backgroundPhoto from "../backgroundphoto.png";
 import Canvas from "./Canvas";
 import { font, color } from "../shared/style";
 import { FlexAlignCenter, MediaQ } from "../shared/components";
@@ -36,15 +37,17 @@ const ComponentContainer = styled.div(props => ({
   height: props.started ? "100vh" : "62.5vh",
   width: props.started ? "67vw" : "100vw",
   backgroundColor: props.started ? color.white : color.grey,
+  backgroundImage: props.started ? "" : `url(${backgroundPhoto})`,
+  backgroundSize: `cover`,
   transition: `backgroundColor 1s, height 1s, width 1s `,
-  WebkitTransition:  ` backgroundColor 1s, height 1s, width 1s `,
+  WebkitTransition: ` backgroundColor 1s, height 1s, width 1s `,
   [MediaQ[2]]: {
     width: "100vw",
     height: "75vh",
     bottom: props.started && 0,
     top: props.started ? "auto" : 0,
     transition: `backgroundColor 1s, height 1s, width 1s `,
-    WebkitTransition:  `backgroundColor 1s, height 1s, width 1s `
+    WebkitTransition: `backgroundColor 1s, height 1s, width 1s `
   }
 }));
 
