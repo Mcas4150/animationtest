@@ -1,5 +1,3 @@
-
-
 export const font = {
   s: "1.5rem",
   m: "2.5rem",
@@ -7,10 +5,10 @@ export const font = {
 };
 
 export const color = {
-  white: "white",
-  turquoise: "turquoise",
+  white: "#FAFAFC",
+
   grey: "grey",
-  lightgrey: "lightgrey",
+  lightgrey: "#eeeeec",
   darkgrey: "darkgrey",
-  skyblue: "deepskyblue"
+  blue: "#25afe5"
 };

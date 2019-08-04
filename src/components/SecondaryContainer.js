@@ -46,25 +46,16 @@ const ComponentContainer = styled.div(props => ({
   height: props.started ? "100vh" : "37.5vh",
   width: props.started ? "33vw" : "100vw",
   backgroundColor: props.started ? color.grey : color.lightgrey,
-  transition: `all 1s ease-in-out, backgroundColor 1.5s ${
-    props.started ? "ease-out" : "ease-in"
-  }`,
-  WebkitTransition: `all 1s ease-in-out, backgroundColor 1.5s ${
-    props.started ? "ease-out" : "ease-in"
-  }`,
+  transition: `backgroundColor 1s, height 1s, width 1s `,
+  WebkitTransition: `backgroundColor 1s, height 1s, width 1s `,
   [MediaQ[2]]: {
     width: "100vw",
     height: "25vh",
     bottom: !props.started && 0,
     top: props.started && 0,
-    transition: `all 1s ease-in-out, backgroundColor 1.5s ${
-      props.started ? "ease-out" : "ease-in"
-    }`,
-    WebkitTransition: `all 1s ease-in-out, backgroundColor 1.5s ${
-      props.started ? "ease-out" : "ease-in"
-    }`
+    transition: `backgroundColor 1s, height 1s, width 1s `,
+    WebkitTransition: `backgroundColor 1s, height 1s, width 1s `
   }
-
 }));
 
 const HeaderContainer = styled(FlexAlignCenter)`
@@ -72,6 +63,10 @@ const HeaderContainer = styled(FlexAlignCenter)`
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  transition: height 1s ease-in-out;
+  ${MediaQ[2]} {
+    height: 25vh;
+  }
 `;
 
 const Header = styled.div`
@@ -90,7 +85,7 @@ const Item = styled(FlexAlignCenter)`
 `;
 
 const Title = styled.div`
-  color: ${color.turquoise};
+  color: ${color.blue};
   font-size: ${font.s};
   margin-bottom: 25px;
 `;

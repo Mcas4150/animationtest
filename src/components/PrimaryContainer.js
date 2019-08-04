@@ -36,23 +36,15 @@ const ComponentContainer = styled.div(props => ({
   height: props.started ? "100vh" : "62.5vh",
   width: props.started ? "67vw" : "100vw",
   backgroundColor: props.started ? color.white : color.grey,
-  transition: `all 1s ease-in-out, backgroundColor 1.5s ${
-    props.started ? "ease-out" : "ease-in"
-  }`,
-  WebkitTransition: `all 1s ease-in-out, backgroundColor 1.5s ${
-    props.started ? "ease-out" : "ease-in"
-  }`,
+  transition: `backgroundColor 1s, height 1s, width 1s `,
+  WebkitTransition:  ` backgroundColor 1s, height 1s, width 1s `,
   [MediaQ[2]]: {
     width: "100vw",
     height: "75vh",
     bottom: props.started && 0,
     top: props.started ? "auto" : 0,
-    transition: `all 1s ease-in-out, backgroundColor 1.5s ${
-      props.started ? "ease-out" : "ease-in"
-    }`,
-    WebkitTransition: `all 1s ease-in-out, backgroundColor 1.5s ${
-      props.started ? "ease-out" : "ease-in"
-    }`
+    transition: `backgroundColor 1s, height 1s, width 1s `,
+    WebkitTransition:  `backgroundColor 1s, height 1s, width 1s `
   }
 }));
 
@@ -91,6 +83,7 @@ const Description = styled.div`
 const CanvasContainer = styled(FlexAlignCenter)`
   height: 100vh;
   justify-content: center;
+  transition: height 1s ease-in-out;
   ${MediaQ[2]} {
     height: 75vh;
   }
