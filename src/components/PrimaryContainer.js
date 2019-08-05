@@ -39,8 +39,8 @@ const ComponentContainer = styled.div(props => ({
   backgroundColor: props.started ? color.white : color.grey,
   backgroundImage: props.started ? "" : `url(${backgroundPhoto})`,
   backgroundSize: `cover`,
-  transition: `backgroundColor 1s, height 1s, width 1s `,
-  WebkitTransition: ` backgroundColor 1s, height 1s, width 1s `,
+  transition: `backgroundColor 1s, backgroundImage 1s, height 1s, width 1s `,
+  WebkitTransition: ` backgroundColor 1s, backgroundImage 1s, height 1s, width 1s `,
   [MediaQ[2]]: {
     width: "100vw",
     height: "75vh",
