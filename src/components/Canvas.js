@@ -96,7 +96,7 @@ export default class Canvas extends Component {
     circle.draw(50, 0, 8, "lightskyblue");
     circle.draw(60, -height / 12, 20, color.white);
     circle.draw(60, height / 12, 20, color.white);
-    circle.draw(80, -height / 10, 15, "lightskyblue");
+    circle.draw(70, -height / 10, 15, "lightskyblue");
     // ctx.restore();
 
     // ctx.font = "30px Arial";
@@ -109,7 +109,7 @@ export default class Canvas extends Component {
     window.setTimeout(orbit.draw(135 * sineCounter), 800);
     window.setTimeout(orbit.draw(190 * sineCounter * sineCounter), 1000);
     window.setTimeout(
-      orbit.draw((width / 4) * sineCounter * sineCounter),
+      orbit.draw((255) * sineCounter * sineCounter),
       3000
     );
 
